@@ -1,0 +1,100 @@
+﻿@model BTL_TTCSN_Nhom7.Models.MaintenanceSchedule
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+</style>
+
+<h2>Xóa lịch bảo trì</h2>
+
+<h3>Bạn chắc chắn muốn xóa?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Device.device_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Device.device_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule_StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule_StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule_EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule_EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule_Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule_Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule_Technician)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule_Technician)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.schedule_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.schedule_Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Đồng ý" class="btn btn-outline-dark" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,138 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<BTL_TTCSN_Nhom7.Models.Device>
+@using BTL_TTCSN_Nhom7.Models
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "DanhSachThietBi";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+    ManageDB db = new ManageDB();
+}
+
+
+<style type="text/css">
+    button {
+        margin-bottom: 10px;
+    }
+
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+
+    table tr td {
+        padding: 10px;
+        width: 16.5%;
+        text-align: center;
+    }
+
+    /*#Des {
+        padding: 10px;
+        width: 20%;
+        text-align: justify;
+    }*/
+
+    table tr th {
+        text-align: center;
+    }
+
+    .form-control {
+        display: unset;
+    }
+
+    #see {
+        position: absolute;
+        right: 10%;
+        top: 20%;
+    }
+</style>
+
+<h1>@ViewBag.duan</h1>
+@{
+    int id1 = (int)Model.First().device_Id;
+}
+<div id="see">@Html.ActionLink("Xem thông báo", "SeeInfo", new { @class = "form-control", id = id1 })</div>
+
+<h2>Danh sách thiết bị của tôi:</h2>
+
+<br />
+@using (Html.BeginForm())
+{
+    @Html.TextBox("Key", ViewBag.KeyCurrent as string, new { @class = "form-control text-box single-line", placeholder = "Nhập tên thiết bị" })
+    <label>&nbsp; | &nbsp;</label>
+    <input type="submit" value="Tìm kiếm" class="btn btn-outline-dark" />
+}
+<br />
+
+<table>
+    <tr>
+        <th>Tên thiết bị</th>
+        <th>Hình ảnh</th>
+        @*<th>Mô tả</th>*@
+        <th>Vị trí</th>
+        <th>Trạng thái</th>
+        <th>Lịch bảo trì</th>
+        <th>Tính năng</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="border-bottom: 1px solid #b5aaaa">
+            <td>@Html.ActionLink(item.device_Name, "Detail", new { id = item.device_Id })</td>
+            <td>
+                <img src="~/wwwroot/images/@item.device_Img" alt="Ảnh" width="100" class="img-thumbnail" />
+            </td>
+            @*<td id="Des">@item.device_Description</td>*@
+            <td>@item.device_Location</td>
+            <td>
+                @item.device_Status
+            </td>
+            <td>
+                @{
+                    var query = db.MaintenanceSchedules.SingleOrDefault(p => p.device_Id == item.device_Id);
+                }
+                @if (query == null)
+                {
+                    <label style="color:red; font-weight:bold">Chưa lên lịch</label>
+                }
+                else
+                {
+                    if (query.schedule_Status == "Đang chờ xử lý")
+                    {
+                        <a href="/ProjectsClient/LenLichBaoTri/@item.device_Id" style="cursor:pointer">
+                            <label style="color: green; font-weight: bold">@query.schedule_Status</label>
+                        </a>
+                    }
+                    else
+                    {
+                        <label style="color: green; font-weight: bold">@query.schedule_Status</label>
+                    }
+                }
+            </td>
+            <td>
+                @*@Html.ActionLink("Tương tác", "TuongTac", new { Id = item.device_Id })*@
+                @*@Html.ActionLink("Lên lịch bảo trì", "LenLichBaoTri", new { Id = item.device_Id })*@
+                <button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("TuongTac","ProjectsClient",new { Id = item.device_Id })'">Tương tác</button>
+                @*<label>&nbsp; | &nbsp;</label>*@
+                <br />
+                @if (query == null)
+                {
+                    <button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("LenLichBaoTri","ProjectsClient",new { Id = item.device_Id })'">Lên lịch bảo trì</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-outline-dark" onclick="location.href='@Url.Action("XoaLichBaoTri","ProjectsClient",new { Id = item.device_Id })'">Xóa lịch bảo trì</button>
+                }
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<div>
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("DanhSachThietBi", new { page, KeyCurrent = ViewBag.KeyCurrent }))
+</div>
+<br />
+@Html.ActionLink("Trở về", "Index", "ProjectsClient")

@@ -1,0 +1,67 @@
+﻿@model BTL_TTCSN_Nhom7.Models.Device
+@{
+    ViewBag.Title = "XoaLichBaoTri";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<style type="text/css">
+    table {
+        width: 50%;
+    }
+
+        table tr td {
+            padding: 10px;
+        }
+
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+</style>
+
+<h2>@ViewBag.duan</h2>
+<center><h2>Xóa lịch bảo trì</h2></center>
+
+<h3>Chi tiết:</h3>
+
+<h4>Tên thiết bị: @Model.device_Name</h4>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>Ngày bắt đầu:</td>
+            <td>@DateTime.Now.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td>Địa điểm:</td>
+            <td>@ViewBag.location</td>
+        </tr>
+        <tr>
+            <td>Mô tả:</td>
+            <td>
+                @ViewBag.description
+            </td>
+        </tr>
+        <tr>
+            <td>Thể loại:</td>
+            <td>
+                @*@Html.DropDownList("type", null, new { @class = "form-control" })*@
+                @ViewBag.type1
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button type="button" class="btn btn-outline-success" onclick="location.href='@Url.Action("ConfirmXoaLichBaoTri","ProjectsClient",new { Id = Model.device_Id })'">Đồng ý</button>
+            </td>
+        </tr>
+    </table>
+}
+
+<br />
+@Html.ActionLink("Trở về", "DanhSachThietBi", new { id = Model.project_Id })
+

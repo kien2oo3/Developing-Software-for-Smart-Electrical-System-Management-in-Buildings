@@ -1,0 +1,107 @@
+﻿@model BTL_TTCSN_Nhom7.Models.Device
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<h2>Chi tiết thiết bị:</h2>
+
+<div>
+    <h4>Device</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.category_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.category_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.project_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.project_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_Img)
+        </dt>
+
+        <dd>
+            <img src="~/wwwroot/images/@Model.device_Img" alt="Ảnh" width="100" />
+            @Html.DisplayFor(model => model.device_Img)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_Specifications)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_Specifications)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_Warranty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_Warranty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.device_Manufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.device_Manufacturer)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Trở về", "Index")
+</p>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BTL_TTCSN_Nhom7.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+
+    table tr td {
+        padding: 10px;
+        width: 14%;
+        text-align: center;
+    }
+
+    table tr th {
+        text-align: center;
+    }
+</style>
+
+<h2>Danh sách dự án</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.project_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.project_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.project_StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.project_Budget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.users_Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.project_Manager)
+        </th>
+        <th>Chức năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.project_Name)
+            </td>
+            <td align="justify">
+                @Html.DisplayFor(modelItem => item.project_Description)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.project_StartDate)*@
+                @(((DateTime)item.project_StartDate).ToString("dd-MM-yyyy HH:mm:ss tt"))
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.project_Budget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.users_Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.project_Manager)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.project_Id }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.project_Id }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.project_Id })
+            </td>
+        </tr>
+    }
+
+</table>

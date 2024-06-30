@@ -1,0 +1,83 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* Phần header */
+#header {
+    height: 20%;
+    color: #fff;
+    background-color: #000;
+    line-height: 200px;
+    text-align: center;
+    font-size: 80px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid #8b8989;
+}
+/* Phần center */
+#center {
+    min-height: 800px;
+}
+
+#meu {
+    float: left;
+    width: 20%;
+    height: 100%;
+    background-color: #000;
+    text-align: center;
+}
+
+#menu {
+    list-style: none;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+#meu1 {
+    padding: 15px;
+}
+
+    #meu1 img {
+        height: 100%;
+        width: 100%;
+    }
+
+#menu li {
+    border-bottom: 1px solid #887f7f;
+}
+
+    #menu li:last-child {
+        border-bottom: none;
+    }
+
+    #menu li a {
+        text-decoration: none;
+        color: #fff;
+        display: block;
+        padding: 20px 80px;
+        font-size: 16px;
+    }
+
+    #menu li:hover a {
+        border-bottom: 1px solid #c4baba;
+        color: blueviolet;
+    }
+
+#content {
+    float: right;
+    width: 79%;
+    height: 100%;
+    padding: 5px 5px;
+}
+
+#footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    padding: 10px 0;
+    border-top: 1px solid #8b8989;
+}

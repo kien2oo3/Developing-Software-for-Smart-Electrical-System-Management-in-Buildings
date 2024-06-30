@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<style type="text/css">
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+    table tr td {
+        padding: 10px;
+        width: 30%;
+    }
+
+</style>
+
+<h2>Chi tiết dự án</h2>
+
+<table>
+    <tr>
+        <td>Mã dự án:</td>
+        <td>@Model.project_Id</td>
+    </tr>
+    <tr>
+        <td>Tên dự án:</td>
+        <td>@Model.project_Name</td>
+    </tr>
+    <tr>
+        <td>Mô tả dự án:</td>
+        <td>@Model.project_Description</td>
+    </tr>
+    <tr>
+        <td>Ngày bắt đầu:</td>
+        <td>@Model.project_StartDate</td>
+    </tr>
+    <tr>
+        <td>Địa điểm:</td>
+        <td>@Model.project_Location</td>
+    </tr>
+    <tr>
+        <td>Ngân sách:</td>
+        <td>@Model.project_Budget</td>
+    </tr>
+    <tr>
+        <td>Quản lý:</td>
+        <td>@Model.project_Manager</td>
+    </tr>
+    <tr>
+        <td>Trạng thái:</td>
+        <td>@Model.project_Status</td>
+    </tr>
+    <tr>
+        <td>Thể loại:</td>
+        <td>@Model.project_Type</td>
+    </tr>
+</table>
+
+<br />
+@Html.ActionLink("Trở về", "Index", "ProjectsClient")

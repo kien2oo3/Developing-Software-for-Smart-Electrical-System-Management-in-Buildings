@@ -1,0 +1,139 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vikinger</title>
+    <link rel="stylesheet" href="~/wwwroot/CSS/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Titillium+Web:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/wwwroot/CSS/css/base.css">
+</head>
+<body>
+    <div class="landing">
+        @if (ViewBag.msg == 1)
+        {
+            <input type="radio" name="check" id="dn" hidden />
+            <input type="radio" name="check" id="dk" checked hidden />
+        }
+        else
+        {
+            <input type="radio" name="check" id="dn" checked hidden />
+            <input type="radio" name="check" id="dk" hidden />
+        }
+
+        @*<input type="radio" name="check" id="dn"  />
+            <input type="radio" name="check" id="dk"  />*@
+
+        <div class="landing-decoration"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-8">
+                    <div class="landing-info">
+                        <div class="logo">
+                            <img src="~/wwwroot/images/logo.svg" alt="logo">
+                        </div>
+                        <h2 class="heading">WELCOME TO</h2>
+                        <h1 class="heading">OUR PROJECT</h1>
+                        <p class="desc">We are Group 7</p>
+                        <div class="action">
+                            <button class="btn"><label for="dn">Đăng nhập</label></button>
+                            <button class="btn"><label for="dk">Đăng ký</label></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-4">
+                    <div class="landing-form">
+                        <div class="sign-in">
+                            <div class="form-si">
+                                <div class="img"><img src="~/wwwroot/images/rocket.png" alt=""></div>
+                                <h2 class="heading">Đăng nhập tài khoản</h2>
+                                @if (ViewBag.err != null)
+                                {
+                                    <div class="alert alert-danger" style="color:red">@ViewBag.err</div>
+                                }
+                                <form action="/Login/Login" method="post">
+                                    <div class="input">
+                                        <div><input type="text" id="na-em" name="users_Username" required><label for="na-em">User name</label></div>
+                                        <div><input type="password" name="users_Password" id="password" required><label for="password">Password</label></div>
+                                    </div>
+                                    <div class="choose">
+
+                                        <div>
+                                            <input type="checkbox" name="checkbox" id="checkbox" hidden>
+                                            <label class="box" for="checkbox"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></label>
+                                            <label for="checkbox">
+                                                Ghi nhớ
+                                            </label>
+                                        </div>
+                                        <div class="no-memory"><a href="#!">Quên mật khẩu?</a></div>
+                                    </div>
+                                    <input type="submit" class="btn-form" value="Đăng nhập tài khoản" />
+
+                                    <div class="social">
+                                        <p class="desc">Đăng nhập bằng tài khoản xã hội</p>
+                                        <div class="social-items">
+                                            <ul>
+                                                <li>
+                                                    <a href="" class="items"><i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="items"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="items"><i class="fa-regular fa-comment-dots" style="color: #ffffff;"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="items"><i class="fa-brands fa-youtube" style="color: #ffffff;"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="sign-up">
+                            <div class="form-su">
+                                <div class="img"><img src="~/wwwroot/images/rocket.png" alt=""></div>
+                                <h2 class="heading">Đăng ký tài khoản</h2>
+                                @if (ViewBag.err1 != null)
+                                {
+                                    <div style="color:red">@ViewBag.err1</div>
+                                }
+                                @using (Html.BeginForm("Regis", "Login", FormMethod.Post))
+                                {
+                                    <div class="input">
+                                        <div><input type="text" name="users_Full_Name" id="na-em" tabindex="1" required><label for="na-em">Full name</label></div>
+                                        <div><input type="text" name="users_Username" id="username" tabindex="2" required><label for="username">User name</label></div>
+                                        <div><input type="password" name="users_Password" id="password" tabindex="3" required><label for="password">Password</label></div>
+                                        <div><input type="password" name="repeat_Password" id="repeatpassword" tabindex="4" required><label for="repeatpassword">Repeat Password</label></div>
+                                    </div>
+                                    <div class="choose">
+
+                                        <div>
+                                            <input type="checkbox" name="checkbox" id="checkbox1" hidden>
+                                            <label class="box" for="checkbox1"><i class="fa-solid fa-xmark" style="color: #ffffff;"></i></label>
+                                            <label for="checkbox1">
+                                                Ghi nhớ
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button class="btn-form">Đăng ký tài khoản</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

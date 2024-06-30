@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BTL_TTCSN_Nhom7.Models.Project>
+
+<style type="text/css">
+    table {
+        width: 100%;
+        border: 1px groove;
+    }
+</style>
+
+<table>
+    <tr>
+        <td>@Html.ActionLink("Danh sách lịch bảo trì", "Index", "MaintenanceSchedules")</td>
+        @foreach (var item in Model)
+        {
+            <td>
+                <a href="/DanhSachThietBi_LichBaoTri/@item.project_Id">@item.project_Name</a>
+            </td>
+        }
+    </tr>
+</table>
+
+

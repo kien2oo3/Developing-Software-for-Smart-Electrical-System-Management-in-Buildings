@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<style type="text/css">
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+    table tr td{
+        padding:10px;
+        width:30%;
+    }
+    table tr th {
+        padding: 10px;
+        width: 30%;
+    }
+</style>
+
+<h2>Danh sách các dự án của tôi:</h2>
+
+<table>
+    <tr>
+        <th>Tên dự án</th>
+        <th>Mô tả</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.project_Name</td>
+            <td align="justify">@item.project_Description</td>
+            <td>
+                @Html.ActionLink("Chi tiết", "ChiTiet", new {id = item.project_Id })  |  
+                @Html.ActionLink("Danh sách thiết bị", "DanhSachThietBi", new {id = item.project_Id })
+            </td>
+
+        </tr>
+    }
+</table>
+
+

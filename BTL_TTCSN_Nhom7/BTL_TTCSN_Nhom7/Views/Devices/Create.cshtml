@@ -1,0 +1,193 @@
+﻿@model BTL_TTCSN_Nhom7.Models.Device
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style type="text/css">
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+
+    input, textarea {
+        max-width: 100%;
+    }
+</style>
+
+<h2>Thêm thiết bị</h2>
+
+@using (Html.BeginForm("Create", "Devices", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.project_Id, "Dự án", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("project_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.project_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.device_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="The field Tên thiết bị must be a string with a maximum length of 255." data-val-length-max="255" id="device_Name" name="device_Name" type="text" value="" placeholder="Nhập tên thiết  bị  ở đây." />
+                @Html.ValidationMessageFor(model => model.device_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        sgvfsdfgdllk
+        <div class="form-group">
+            <label class="control-label col-md-2">H&#236;nh ảnh</label>
+            <div class="col-md-10">
+                <img id="output" src="~/wwwroot/images/h0.png" alt="Hình ảnh" width="80" class="img-thumbnail" />
+                <label for="ufile" style="cursor:pointer">Chọn ảnh</label>
+                <input type="file" name="ImgFile" id="ufile" style="display:none" onchange="LoadFile(event)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.device_Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.device_Description, new { htmlAttributes = new { @class = "form-control" } })*@
+                <textarea class="form-control text-box single-line" id="device_Description" name="device_Description" rows="5" placeholder="Nhập mô tả ở đây."></textarea>
+                @Html.ValidationMessageFor(model => model.device_Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.device_Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="device_Location" name="device_Location" type="text" value="" placeholder="Nhập nơi sản xuất ở đây." />
+                @Html.ValidationMessageFor(model => model.device_Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.device_Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Giá must be a number." id="device_Price" name="device_Price" type="text" value="" placeholder="Nhập giá tiền ở đây." />
+                @Html.ValidationMessageFor(model => model.device_Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.device_Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="The field Trạng thái must be a string with a maximum length of 255." data-val-length-max="255" id="device_Status" name="device_Status" type="text" value="" placeholder="Nhập trạng thái ở đây." />
+                @Html.ValidationMessageFor(model => model.device_Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.category_Id, "Danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("category_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.category_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.device_Specifications, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea class="form-control text-box single-line" id="device_Specifications" name="device_Specifications" rows="5" placeholder="Nhập thông số kỹ thuật ở đây."></textarea>
+                @Html.ValidationMessageFor(model => model.device_Specifications, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.device_Warranty, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="device_Warranty" name="device_Warranty" type="text" value="" placeholder="Nhập bảo hành tại đây." />
+                @Html.ValidationMessageFor(model => model.device_Warranty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.device_Manufacturer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-length="The field Nhà sản xuất must be a string with a maximum length of 255." data-val-length-max="255" id="device_Manufacturer" name="device_Manufacturer" type="text" value="" placeholder="Nhập nhà sản xuất tại đây." />
+                @Html.ValidationMessageFor(model => model.device_Manufacturer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <center><input type="submit" id="btn_Save" value="Thêm" class="btn btn-outline-dark" /></center>
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+
+<div id="kq">
+
+</div>
+
+<div>
+    @Html.ActionLink("Trở về", "Index")
+</div>
+<hr />
+
+<script type="text/javascript">
+    function LoadFile(event) {
+        var img = document.getElementById("output");
+        img.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btn_Save").click(function () {
+                //Đối tượng device
+                var device = {};
+                device.project_Id = $("#project_Id").val();
+                device.device_Name = $("#device_Name").val();
+                device.device_Description = $("#device_Description").val();
+                device.device_Location = $("#device_Location").val();
+                device.device_Price = $("#device_Price").val();
+                device.device_Status = $("#device_Status").val();
+                device.category_Id = $("#category_Id").val();
+                device.device_Specifications = $("#device_Specifications").val();
+                device.device_Warranty = $("#device_Warranty").val();
+                device.device_Manufacturer = $("#device_Manufacturer").val();
+                //Đối tượng ảnh:
+                var imgFile = $("#ufile")[0].files[0];
+                //Tạo đối tương Form Data
+                var formData = new FormData();
+                formData.append("device", JSON.stringify(device));
+                formData.append("imgFile", imgFile);
+                $.ajax({
+                    type: "POST",
+                    contentType: false,
+                    data: formData,
+                    processData: false,
+                    success: function (response) {
+                        if (response.result) {
+                            $("#kq").removeClass().addClass("alert alert-success");
+                            $("#kq").html("Thêm  thành  công!");
+                            $("#kq").css("font-weight", "bold");
+                        } else {
+                            $("#kq").removeClass().addClass("alert alert-danger");
+                            $("#kq").html("Thêm  thất bại!" + response.error);
+                            $("#kq").css("font-weight", "bold");
+                        }
+                    },
+                    error: function (response) {
+                        alert("Error in Ajax block!");
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+} 

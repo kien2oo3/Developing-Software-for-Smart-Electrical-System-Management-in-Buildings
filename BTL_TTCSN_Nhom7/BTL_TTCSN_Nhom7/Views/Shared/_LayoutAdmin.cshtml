@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang quản trị</title>
+    <link rel="stylesheet" href="~/wwwroot/CSS/css/admin.css" type="text/css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="header">
+        <div>Trang quản trị</div>
+    </div>
+    @if (Session["user"] != null && Session["position"].Equals("Quản trị viên"))
+    {
+        <div id="center">
+            <div id="meu">
+                <div id="meu1"><img src="~/wwwroot/images/@Session["img"]" alt="Ảnh chân dung"></div>     
+                <p style="color: #c7bfe3; font-size: 18px;">Xin chào, @Session["user"]</p>
+                <hr>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Quản lý dự án", "Index", "Projects")</li>
+                    <li>@Html.ActionLink("Quản lý thiết bị", "Index", "Devices")</li>
+                    <li>@Html.ActionLink("Quản lý tương tác", "Index", "Interactions")</li>
+                    <li>@Html.ActionLink("Quản lý lịch bảo trì", "Index", "MaintenanceSchedules")</li>
+                    <li>@Html.ActionLink("Đăng xuất", "Logout", "Login")</li>
+                </ul>
+            </div>
+            <div id="content">
+                @RenderBody()
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    }
+    else if (Session["user"] != null && Session["position"].Equals("Khách hàng"))
+    {
+        <br />
+        <div style="display:none">@RenderBody()</div>
+        <br />
+        <center>@Html.ActionLink("Chuyển sang trang người dùng", "Index", "ProjectsCLient")</center>
+        <br />
+    }
+    else
+    {
+        <br />
+        <div style="display:none">@RenderBody()</div>
+        <br />
+        <center>@Html.ActionLink("Đăng nhập ngay", "Index", "Login")</center>
+        <br />
+    }
+
+    <div id="footer">
+        <span>Design by Group 7</span>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

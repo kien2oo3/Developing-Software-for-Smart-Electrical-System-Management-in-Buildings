@@ -1,0 +1,91 @@
+﻿@model BTL_TTCSN_Nhom7.Models.Device
+@{
+    ViewBag.Title = "LenLichBaoTri";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<style type="text/css">
+    table {
+        width: 50%;
+    }
+
+        table tr td {
+            padding: 10px;
+        }
+
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+</style>
+
+<h2>@ViewBag.duan</h2>
+<center><h2>Lên lịch bảo trì</h2></center>
+
+<h3>Chi tiết:</h3>
+
+<h4>Tên thiết bị: @Model.device_Name</h4>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>Ngày bắt đầu:</td>
+            <td>@DateTime.Now.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td>Địa điểm:</td>
+            <td>@Html.TextBox("location", ViewBag.location as string, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Mô tả:</td>
+            <td>
+                <textarea name="description" rows="5" class="form-control">@ViewBag.description</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>Thể loại:</td>
+            <td>
+                @Html.DropDownList("type", null, new { @class = "form-control" })
+                @*<input type="checkbox" name="type" id="type1" value="Cập nhật phần mềm" class="form-check-input" />
+                <label for="type1">Cập nhật phần mềm</label><br />
+                <input type="checkbox" name="type" id="type2" value="Kiểm tra kết nối mạng" class="form-check-input" />
+                <label for="type2">Kiểm tra kết nối mạng</label><br />
+                <input type="checkbox" name="type" id="type3" value="Kiểm tra nguồn năng lượng" class="form-check-input" />
+                <label for="type3">Kiểm tra nguồn năng lượng</label><br />
+                <input type="checkbox" name="type" id="type4" value="Kiểm tra tích hợp với hệ thống" class="form-check-input" />
+                <label for="type4">Kiểm tra tích hợp với hệ thống</label><br />
+                <input type="checkbox" name="type" id="type5" value="Kiểm tra tình trạng vật lý" class="form-check-input" />
+                <label for="type5">Kiểm tra tình trạng vật lý</label><br />
+                <input type="checkbox" name="type" id="type6" value="Kiểm tra tính tương thích" class="form-check-input" />
+                <label for="type6">Kiểm tra tính tương thích</label><br />
+                <input type="checkbox" name="type" id="type7" value="Sửa chữa hư hại" class="form-check-input" />
+                <label for="type7">Sửa chữa hư hại</label><br />
+                <input type="checkbox" name="type" id="type8" value="Đào tạo người dùng" class="form-check-input" />
+                <label for="type8">Đào tạo người dùng</label><br />
+                <input type="checkbox" name="type" id="type9" value="Khác" class="form-check-input" />
+                <label for="type9">Khác</label>*@
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                @if (ViewBag.rs == null)
+                {
+                    <input type="submit" value="Xác nhận" class="btn btn-success" />
+                }
+                else
+                {
+                    <input type="submit" value="Cập nhật" class="btn btn-success" />
+                }
+            </td>
+        </tr>
+    </table>
+}
+
+<br />
+@Html.ActionLink("Trở về", "DanhSachThietBi", new { id = Model.project_Id })
+

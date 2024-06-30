@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "TuongTac";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<style type="text/css">
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+
+    table tr td {
+        padding: 10px;
+        width: 20%;
+        text-align: center;
+    }
+
+    #Des {
+        padding: 10px;
+        width: 20%;
+        text-align: justify;
+    }
+
+    table tr th {
+        text-align: center;
+    }
+</style>
+
+<h2>Tương tác thiết bị điện thông minh:</h2>
+<table cellpadding="10">
+    <tr>
+        <th>Tên thiết bị</th>
+        <th>Hình ảnh</th>
+        <th>Mô tả</th>
+        <th>Trạng thái</th>
+        <th>Chức năng</th>
+    </tr>
+
+    <tr>
+        <td>@Model.device_Name</td>
+        <td>
+            <img src="~/wwwroot/images/@Model.device_Img" alt="Hình ảnh" width="80" class="img-thumbnail" />
+        </td>
+        <td id="Des">@Model.device_Description</td>
+        @using (Html.BeginForm())
+        {
+            <td>
+                @if ((Model.device_Status as string).Equals("Kích hoạt"))
+                {
+                    @Html.RadioButton("Interact", "Kích hoạt", true)<label>Kích hoạt</label><br />
+                    @Html.RadioButton("Interact", "Ngừng kích hoạt")<label>Ngừng kích hoạt</label>
+                }
+                else
+                {
+                    @Html.RadioButton("Interact", "Kích hoạt")<label>Kích hoạt</label><br />
+                    @Html.RadioButton("Interact", "Ngừng kích hoạt", true)<label>Ngừng kích hoạt</label>
+                }
+            </td>
+            <td>
+                <input type="submit" value="Lưu" class="btn btn-outline-success" />
+            </td>
+        }
+
+    </tr>
+</table>
+@if (ViewBag.kq != null)
+{
+    <div class="alert alert-success">@ViewBag.kq</div>
+}
+<br />
+@Html.ActionLink("Trở về", "DanhSachThietBi", new {id = Model.project_Id})
+

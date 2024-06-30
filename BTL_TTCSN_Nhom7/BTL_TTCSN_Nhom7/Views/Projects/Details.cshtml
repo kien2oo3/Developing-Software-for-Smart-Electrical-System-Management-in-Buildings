@@ -1,0 +1,109 @@
+﻿@model BTL_TTCSN_Nhom7.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+</style>
+
+<h2>Chi tiết dự án</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.users_Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.users_Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project_StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project_StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project_EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project_EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project_Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project_Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project_Budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project_Budget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project_Manager)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project_Manager)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.project_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.project_Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.project_Id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>

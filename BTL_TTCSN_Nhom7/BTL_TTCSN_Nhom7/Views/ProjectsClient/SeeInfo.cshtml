@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BTL_TTCSN_Nhom7.Models.MaintenanceSchedule>
+@using BTL_TTCSN_Nhom7.Models
+@{
+    ViewBag.Title = "SeeInfo";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+    ManageDB db = new ManageDB();
+}
+
+<style type="text/css">
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+</style>
+
+<h2>Hoạt động mới nhất của bạn:</h2>
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+        var tenThietBi = db.Devices.Find(item.device_Id).device_Name;
+        <tr>
+            <td>
+                <br />
+                @if (item.schedule_Status == "Đang chờ xử lý")
+                {
+                    <label>Vào @(((DateTime)item.schedule_StartDate).ToString("dd-MM-yyyy HH:mm:ss tt")) bạn đã lên lịch bảo trì cho thiết bị @tenThietBi</label>
+                    <br />
+                    <label style="font-weight: bold">Tình trạng: <span style="color:red">@item.schedule_Status</span></label>
+                }
+                else if (item.schedule_Status == "Đã xác nhận")
+                {
+                    <label>Vào @(((DateTime)item.schedule_StartDate).ToString("dd-MM-yyyy HH:mm:ss tt")), quản trị viên đã xác nhận lịch bảo trì cho thiết bị @tenThietBi</label>
+                    <br />
+                    <label>Chuyên viên bảo trì: @item.schedule_Technician</label>
+                    <br />
+                    <label style="font-weight: bold">Tình trạng: <span style="color:green">@item.schedule_Status</span></label>
+                }
+                else
+                {
+                    <label>Vào @(((DateTime)item.schedule_StartDate).ToString("dd-MM-yyyy HH:mm:ss tt")), thiết bị @tenThietBi đã hoàn thành việc bảo trì</label>
+                    <br />
+                    <label>Chuyên viên bảo trì: @item.schedule_Technician</label>
+                    <br />
+                    <label style="font-weight: bold">Tình trạng: <span style="color:darkmagenta">@item.schedule_Status</span></label>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+@Html.ActionLink("Trở về", "DanhSachThietBi", new { id = ViewBag.idProj })

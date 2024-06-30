@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang người dùng</title>
+    <link rel="stylesheet" href="~/wwwroot/CSS/css/client.css" type="text/css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <div id="logo">
+                <a href="/ProjectsClient/Index"><img src="~/wwwroot/images/logo_c.png" alt="Logo"></a>
+            </div>
+            <ul id="menu">
+                <li>@Html.ActionLink("Trang chủ", "Index", "ProjectsClient")</li>
+                <li>@Html.ActionLink("Giới thiệu", "", "")</li>
+                <li>@Html.ActionLink("Phiên bản", "", "")</li>
+                <li>@Html.ActionLink("Liên hệ", "", "")</li>
+                @if (Session["user"] != null && Session["position"].Equals("Khách hàng"))
+                {
+                    <li>
+                        <label>Xin chào, @Session["user"] &nbsp;|&nbsp;</label>
+                        @Html.ActionLink("Đăng xuất", "Logout", "Login")
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Html.ActionLink("Đăng nhập ngay", "Index", "Login")
+                    </li>
+                }
+            </ul>
+
+        </div>
+        @if (Session["user"] == null || !Session["position"].Equals("Khách hàng"))
+        {
+            <div style="display:none">
+                @RenderBody()
+            </div>
+            <center><h3 style="color:red; font-weight:bold">Bạn cần đăng nhập tài khoản!</h3></center>
+        }
+        else
+        {
+            <div id="center">
+                @RenderBody()
+            </div>
+        }
+        <div id="footer">
+            Design By Group 7
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

@@ -1,0 +1,69 @@
+﻿@model BTL_TTCSN_Nhom7.Models.Interaction
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    a {
+        color: blueviolet;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: red;
+        }
+</style>
+
+<h2>Chi tiết tương tác</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Device.device_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Device.device_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.users_Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.users_Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interaction_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.interaction_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interaction_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.interaction_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.interaction_Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.interaction_Details)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.interaction_Id }) |
+    @Html.ActionLink("Trở về", "Index")
+</p>
